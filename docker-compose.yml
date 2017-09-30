@@ -1,0 +1,10 @@
+version: '3'
+services:
+  elixir:
+    build: ./
+    volumes:
+      - ./:/generate_csv
+    command: iex
+    working_dir: /generate_csv
+    stdin_open: true
+    tty: true
