@@ -1,2 +1,2 @@
-FROM elixir:latest
+FROM elixir:1.5
 

@@ -4,18 +4,23 @@ defmodule GenerateCsv do
   """
 
   @doc """
-  Hello world.
+  Create especified number of csv lines
+
+  ## Parameters
+      count: Number of entries that willbe generated
 
   ## Examples
 
-      iex> GenerateCsv.hello
-      :world
+      iex> GenerateCsv.create(1)
+      ["51734,euvl 878,tptzd2", "14928,ougt 237,jmwc83"]
+
 
   """
 
+  @spec create(integer()) :: [...]
   def create(count) do
       # set random seed
-      :random.seed(:erlang.now())
+      :rand.seed(:exs1024, :erlang.timestamp())
 
       # showd create a array with each line of CSV format {id, course name, room number}
       create([], count)
@@ -29,6 +34,24 @@ defmodule GenerateCsv do
     create([new_line() | list], count - 1)
   end
 
+
+  @doc """
+  Generate random string
+
+  ## Parameters
+      size: Random string number of chars
+      type: Set default char pool will be used
+
+  ## Examples
+
+      iex> GenerateCsv.rand_str(5, :alphanumerical)
+      "h8v0v"
+
+      iex> GenerateCsv.rand_str(5, :char)
+      "ckhmk"
+
+  """
+  @spec create(integer(), atom()) :: String.t()
   def rand_str(size, type) do
     basic_alphabet = "abcdefghijklmnopqrstuvwxyz"
     alphabet = case type do
@@ -49,6 +72,16 @@ defmodule GenerateCsv do
     rand_str(size - 1, "#{str}#{new_char}", alphabet)
   end
 
+  @doc """
+  Generate random string
+
+  ## Examples
+
+      iex> GenerateCsv.new_line()
+      "31494,yezk 81,vppym"
+
+  """
+  @spec new_line() :: String.t()
   def new_line() do
     # id
     id = :rand.uniform(100000)
